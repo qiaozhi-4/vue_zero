@@ -19,7 +19,7 @@
         },
         methods: {
             showDOM(){
-                console.log('hhhh')
+                console.log('')
             }
         },
     }
