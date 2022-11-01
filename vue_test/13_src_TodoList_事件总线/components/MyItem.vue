@@ -13,7 +13,7 @@
 <script>
 	export default {
 		name:'MyItem',
-		//声明接收todo、checkTodo、deleteTodo
+		//声明接收todo
 		props:['todo'],
 		methods: {
 			//勾选or取消勾选
