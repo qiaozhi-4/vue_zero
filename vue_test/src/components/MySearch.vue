@@ -4,8 +4,7 @@
 
 <script>
 export default {
-	name:'MyList'
-
+	name:'MySearch'
 }
 </script>
 
