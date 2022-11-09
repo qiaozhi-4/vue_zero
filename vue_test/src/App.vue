@@ -7,7 +7,7 @@
 
 <script>
 	import MySearch from "./components/MySearch";
-	
+
 	import MyList from "./components/MyList";
 
 	export default {
