@@ -1,19 +1,19 @@
 <template>
   <div class="container">
-    <MySearch/>
-    <MyList/>
+    <MySearch />
+    <MyList />
   </div>
 </template>
 
 <script>
-	import MySearch from "./components/MySearch";
-	 
-	import MyList from "./components/MyList";
+import MySearch from "./components/MySearch";
 
-	export default {
-	name: "App",
-	components: { MySearch, MyList },
-	};
+import MyList from "./components/MyList";
+
+export default {
+  name: "App",
+  components: { MySearch, MyList },
+};
 </script>
 
 

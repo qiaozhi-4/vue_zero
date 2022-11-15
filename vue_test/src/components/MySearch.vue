@@ -17,20 +17,37 @@ import axios from "axios";
 export default {
   name: "MySearch",
   data() {
-	return {
-		keyWord:''
-	}
+    return {
+      keyWord: "",
+    };
   },
   methods: {
     searchUsers() {
-      console.log(this.keyWord);
+      //更新list之前
+      this.$bus.$emit("updateListData", {
+        isFirst: false,
+        isLoading: true,
+        errMag: "",
+        users: [],
+      });
       axios.get(`https://api.github.com/search/users?q=${this.keyWord}`).then(
         (response) => {
           console.log("请求成功:", response.data.items);
-		  this.$bus.$emit('getUsers', response.data.items)
+          //请求成功之后
+          this.$bus.$emit("updateListData", {
+            isLoading: false,
+            errMag: "",
+            users: response.data.items,
+          });
         },
         (error) => {
           console.log("请求失败:", error.message);
+          //请求失败之后
+          this.$bus.$emit("updateListData", {
+            isLoading: false,
+            errMag: error.message,
+            users: [],
+          });
         }
       );
     },

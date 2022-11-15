@@ -1,11 +1,26 @@
 <template>
   <div class="row">
-    <div class="card" v-for="user in users" :key="user.login">
+    <!-- 展示列表 -->
+    <div
+      v-show="info.users.length"
+      class="card"
+      v-for="user in info.users"
+      :key="user.login"
+    >
       <a :href="user.html_url" target="_blank">
         <img :src="user.avatar_url" style="width: 100px" />
       </a>
-      <p class="card-text">{{user.login}}</p>
+      <p class="card-text">{{ user.login }}</p>
     </div>
+
+    <!-- 展示欢迎语 -->
+    <h1 v-show="info.isFirst">欢迎使用!</h1>
+
+    <!-- 展示加载中 -->
+    <h1 v-show="info.isLoading">Loading....!</h1>
+
+    <!-- 展示错误信息 -->
+    <h1 v-show="info.errMag">{{ info.errMag }}</h1>
   </div>
 </template>
 
@@ -14,13 +29,21 @@ export default {
   name: "MyList",
   data() {
     return {
-      users: [],
+      info:{
+        isFirst: true,
+        isLoading: false,
+        errMag: "",
+        users: [],
+      }
     };
   },
+  methods: {
+    
+  },
   mounted() {
-    this.$bus.$on("getUsers", (users) => {
-      console.log("我是List组件,收到数据:", users);
-	  this.users = users
+    this.$bus.$on("updateListData", (dataObj) => {
+      console.log("我是List组件,收到数据:", dataObj);
+      this.info = {...this.info, ...dataObj}
     });
   },
 };
