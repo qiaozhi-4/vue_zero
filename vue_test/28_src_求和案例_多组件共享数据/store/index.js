@@ -37,11 +37,26 @@ const mutations = {
 	JIAN(state,value){
 		console.log('mutations中的JIAN被调用了')
 		state.sum -= value
+	},
+	ADD_PERSON(state,value){
+		console.log('mutations中的ADD_PERSON被调用了')
+		state.personList.unshift(value)
 	}
 }
 //准备state——用于存储数据
 const state = {
-	sum:0 //当前的和
+	sum:0, //当前的和
+	school:'尚硅谷',
+	subject:'前端',
+	personList:[
+		{id:'001',name:'张三'}
+	]
+}
+//准备getters——用于将state中的数据进行加工
+const getters = {
+	bigSum(state){
+		return state.sum*10
+	}
 }
 
 //创建并暴露store
@@ -49,4 +64,5 @@ export default new Vuex.Store({
 	actions,
 	mutations,
 	state,
+	getters
 })
