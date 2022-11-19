@@ -3,6 +3,7 @@ import About from '../pages/About'
 import Home from '../pages/Home'
 import Message from '../pages/Message'
 import News from '../pages/News'
+import Detail from '../pages/Detail'
 
 export default new VueRouter({
     routes: [
@@ -16,7 +17,13 @@ export default new VueRouter({
             children: [
                 {
                     path: 'message',
-                    component: Message
+                    component: Message,
+                    children:[
+                        {
+                            path:'detail',
+                            component: Detail
+                        }
+                    ]
                 },
                 {
                     path: 'news',
